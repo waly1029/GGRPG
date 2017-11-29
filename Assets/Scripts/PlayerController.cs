@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour {
 
     public LayerMask movementMask;
 
-    PlayerMotor playerMtor;
+    PlayerMotor playerMotor;
 
     Camera camera;
 	// Use this for initialization
@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour {
 		
         camera = Camera.main;
 
-        playerMtor = GetComponent<PlayerMotor>( );
+        playerMotor = GetComponent<PlayerMotor>( );
 
 	}
 	
@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour {
 
             if( Physics.Raycast( ray, out hit, 100, movementMask ) ) {
 
-                playerMtor.MoveToPoint( hit.point );
+                playerMotor.MoveToPoint( hit.point );
 
                 Debug.Log( hit.collider.name + hit.point );
                 //hitしたところにプレーヤーを移動させ
@@ -63,17 +63,34 @@ public class PlayerController : MonoBehaviour {
 
     void SetFocus( Interactable newFocus ) {
 
-        focus = newFocus;
+        if( newFocus != focus ) {
 
-        playerMtor.FollowTarget( newFocus );
+            if( focus != null ) {
+
+                focus.OnDefocused( );
+
+            }
+
+            focus = newFocus;
+
+            playerMotor.FollowTarget( newFocus );
+        }
+
+        newFocus.OnFocused( transform );
 
     }
 
     void RemoveFocus( ) {
 
+        if( focus != null ) {
+
+            focus.OnDefocused( );
+
+        }
+
         focus = null;
 
-        playerMtor.StopFollowingTarget( );
+        playerMotor.StopFollowingTarget( );
 
     }
 }
