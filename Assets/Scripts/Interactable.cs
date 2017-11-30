@@ -14,7 +14,8 @@ public class Interactable : MonoBehaviour {
 
     public virtual void Interact( ) {
         //用来重写
-        Debug.Log( "Interacting with" + transform.name );
+        Debug.Log( "Interacting with " + transform.name );
+
     }
 
     void Update( ) {
@@ -24,8 +25,6 @@ public class Interactable : MonoBehaviour {
             float distance = Vector3.Distance( player.position, interactionTransform.position );
 
             if( distance <= radius ) {
-
-                Debug.Log( "INTERACT" );
 
                 Interact( );
 
@@ -59,6 +58,13 @@ public class Interactable : MonoBehaviour {
 
 	void OnDrawGizmosSelected( ) {
         //Gizmos可視化サブーツール
+
+        if( interactionTransform == null ) {
+
+            interactionTransform = transform;
+
+        }
+
         Gizmos.color = Color.red;
 
         Gizmos.DrawWireSphere( interactionTransform.position, radius );

@@ -27,7 +27,7 @@ public class CameraController : MonoBehaviour {
 
         currentZoom -= Input.GetAxis( "Mouse ScrollWheel" ) * zoomSpeed;
 
-        Debug.Log(currentZoom);
+        //Debug.Log(currentZoom);
 
         currentZoom = Mathf.Clamp( currentZoom, minZoom, maxZoom );
 
