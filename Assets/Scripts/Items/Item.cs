@@ -18,7 +18,14 @@ public class Item : ScriptableObject {
     public virtual void Use( ) {
 
         //アイテムを使用もしくは他のfuncion
-        Debug.Log( "Using" + name );
+        Debug.Log( "Using " + name );
+
+    }
+
+    public void RemoveFromInventory( ) {
+
+        Inventory.instance.Remove( this );
+
     }
 
 }

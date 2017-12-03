@@ -13,7 +13,7 @@ public class Interactable : MonoBehaviour {
     bool hasInteracted = false;
 
     public virtual void Interact( ) {
-        //用来重写
+        
         Debug.Log( "Interacting with " + transform.name );
 
     }
