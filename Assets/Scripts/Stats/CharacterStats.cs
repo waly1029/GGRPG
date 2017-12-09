@@ -36,7 +36,7 @@ public class CharacterStats : MonoBehaviour {
 
         Debug.Log( transform.name + " taks" + damage + " damage." );
 
-        if(currentHealth <= 0 ) {
+        if( currentHealth <= 0 ) {
 
             Die( );
 
